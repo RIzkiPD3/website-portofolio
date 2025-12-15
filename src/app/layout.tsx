@@ -5,7 +5,7 @@ import Footer from "@/components/footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rizki | Web Developer",
+  title: "Rizki | Software Engineer",
   description: "Professional web portfolio built with Next.js",
 };
 
