@@ -13,7 +13,6 @@ export default function Header() {
           <Link href="/" className="hover:text-white">Home</Link>
           <Link href="/about" className="hover:text-white">About</Link>
           <Link href="/projects" className="hover:text-white">Projects</Link>
-          <Link href="/contact" className="hover:text-white">Contact</Link>
         </nav>
       </div>
     </header>

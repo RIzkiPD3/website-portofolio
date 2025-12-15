@@ -7,9 +7,9 @@ export default function AboutSection() {
     <section className="border-t border-slate-800 py-24">
       <Container className="grid gap-12 md:grid-cols-2 md:items-center">
         {/* Image */}
-        <div className="relative h-[360px] w-full overflow-hidden rounded-2xl border border-slate-800">
+        <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-slate-800">
           <Image
-            src="/images/profile.jpg"
+            src="/myphoto.jpg"
             alt="Rizki profile photo"
             fill
             className="object-cover"
@@ -24,7 +24,7 @@ export default function AboutSection() {
           </h2>
 
           <p className="mt-6 text-slate-400">
-            I’m Rizki, a web developer who focuses on building clean,
+            I’m Rizki, a Software Engineer who focuses on building clean,
             maintainable, and scalable web applications. I enjoy turning
             complex problems into simple and intuitive solutions.
           </p>
@@ -35,20 +35,7 @@ export default function AboutSection() {
             and software architecture to grow as a full-stack developer.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3 text-sm">
-            <span className="rounded-full border border-slate-700 px-4 py-2">
-              Next.js
-            </span>
-            <span className="rounded-full border border-slate-700 px-4 py-2">
-              TypeScript
-            </span>
-            <span className="rounded-full border border-slate-700 px-4 py-2">
-              Tailwind CSS
-            </span>
-            <span className="rounded-full border border-slate-700 px-4 py-2">
-              GSAP
-            </span>
-          </div>
+
         </div>
       </Container>
     </section>
