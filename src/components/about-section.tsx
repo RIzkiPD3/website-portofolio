@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function AboutSection() {
   return (
-    <section className="border-t border-slate-800 py-24">
+    <section id="about-section" className="border-t border-slate-800 py-24">
       <Container className="grid gap-12 md:grid-cols-2 md:items-center">
         {/* Image */}
         <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-slate-800">

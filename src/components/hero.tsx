@@ -1,10 +1,9 @@
 // components/Hero.tsx
-import Link from "next/link";
 import Container from "@/components/container";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section id="home" className="relative overflow-hidden">
       {/* background glow */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-[-200px] h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-cyan-500/20 blur-[120px]" />
@@ -24,19 +23,19 @@ export default function Hero() {
         </p>
 
         <div className="mt-8 flex gap-4">
-          <Link
-            href="/projects"
+          <a
+            href="#projects-section"
             className="rounded-lg bg-linear-to-r from-indigo-500 to-cyan-500 px-6 py-3 font-medium text-white transition hover:opacity-90"
           >
             View Projects
-          </Link>
+          </a>
 
-          <Link
-            href="/contact"
+          <a
+            href="#contact-section"
             className="rounded-lg border border-slate-700 px-6 py-3 font-medium text-slate-300 transition hover:border-slate-500 hover:text-white"
           >
             Contact Me
-          </Link>
+          </a>
         </div>
       </Container>
     </section>
