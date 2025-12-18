@@ -5,7 +5,7 @@ import { projects } from "@/lib/projects";
 
 export default function ProjectsSection() {
   return (
-    <section className="border-t border-slate-800 py-24">
+    <section id="projects-section" className="border-t border-slate-800 py-24">
       <Container>
         <h2 className="text-3xl font-semibold tracking-tight">
           Selected Projects

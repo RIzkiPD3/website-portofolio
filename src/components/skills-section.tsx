@@ -16,7 +16,7 @@ const skills = [
 
 export default function SkillsSection() {
   return (
-    <section className="border-t border-slate-800 py-24">
+    <section id="skills-section" className="border-t border-slate-800 py-24">
       <Container>
         <h2 className="text-3xl font-semibold tracking-tight">
           Skills & Tools
