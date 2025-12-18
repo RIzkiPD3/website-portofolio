@@ -11,15 +11,14 @@ export default function Hero() {
 
       <Container className="flex min-h-[calc(100vh-4rem)] flex-col justify-center">
         <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-tight sm:text-6xl">
-          Hi, I’m Rizki  
+          Hi, I’m Rizki
           <span className="block bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
             Software Engineer
           </span>
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg text-slate-400">
-          I build modern, scalable, and user-focused web applications using
-          Next.js, TypeScript, and clean architecture.
+          Creating modern, scalable applications with a focus on performance and user experience.
         </p>
 
         <div className="mt-8 flex gap-4">
