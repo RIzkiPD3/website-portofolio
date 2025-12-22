@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/footer";
+import ClickBurst from "@/components/click-burst";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-slate-950 text-slate-100 antialiased">
+        <ClickBurst />
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
