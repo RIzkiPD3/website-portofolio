@@ -1,17 +1,23 @@
 "use client";
 
 // components/ProjectsSection.tsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Container from "@/components/container";
 import ProjectCard from "@/components/project-card";
 import SmallProjectCard from "@/components/small-project-card";
-import { projects, Project } from "@/lib/projects";
+import { useProjects } from "@/contexts/project-context";
+import { Project } from "@/lib/projects";
 
 export default function ProjectsSection() {
+  const { projects } = useProjects();
   // State to track the currently featured project
-  const [featuredProject, setFeaturedProject] = useState<Project | null>(
-    projects.length > 0 ? projects[0] : null
-  );
+  const [featuredProject, setFeaturedProject] = useState<Project | null>(null);
+
+  useEffect(() => {
+    if (projects.length > 0 && !featuredProject) {
+      setFeaturedProject(projects[0]);
+    }
+  }, [projects, featuredProject]);
 
   if (projects.length === 0) {
     return (

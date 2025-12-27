@@ -1,9 +1,49 @@
 "use client";
 
-import { projects } from "@/lib/projects";
-import { FileX } from "lucide-react";
+import { useState } from "react";
+import { useProjects } from "@/contexts/project-context";
+import { FileX, Plus, Pencil, Trash2 } from "lucide-react";
+import ProjectFormModal from "@/components/project-form-modal";
+import DeleteModal from "@/components/delete-modal";
+import { Project } from "@/lib/projects";
 
 export default function AdminProjectsPage() {
+    const { projects, addProject, updateProject, deleteProject } = useProjects();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editingProject, setEditingProject] = useState<Project | null>(null);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [deletingProject, setDeletingProject] = useState<Project | null>(null);
+
+    const handleCreate = () => {
+        setEditingProject(null);
+        setIsModalOpen(true);
+    };
+
+    const handleEdit = (project: Project) => {
+        setEditingProject(project);
+        setIsModalOpen(true);
+    };
+
+    const handleSubmit = (data: any) => {
+        if (editingProject) {
+            updateProject(editingProject.slug, data);
+        } else {
+            addProject(data);
+        }
+    };
+
+    const handleDelete = (project: Project) => {
+        setDeletingProject(project);
+        setIsDeleteModalOpen(true);
+    };
+
+    const handleConfirmDelete = () => {
+        if (deletingProject) {
+            deleteProject(deletingProject.slug);
+            setDeletingProject(null);
+        }
+    };
+
     return (
         <div className="space-y-8">
             {/* Page Title */}
@@ -16,10 +56,19 @@ export default function AdminProjectsPage() {
                         Kelola semua project yang ada
                     </p>
                 </div>
-                <div className="rounded-lg border border-slate-700/50 bg-slate-800/50 px-4 py-2">
-                    <span className="text-sm font-semibold text-slate-400">
-                        Total: <span className="text-cyan-400">{projects.length}</span>
-                    </span>
+                <div className="flex items-center gap-4">
+                    <div className="rounded-lg border border-slate-700/50 bg-slate-800/50 px-4 py-2">
+                        <span className="text-sm font-semibold text-slate-400">
+                            Total: <span className="text-cyan-400">{projects.length}</span>
+                        </span>
+                    </div>
+                    <button
+                        onClick={handleCreate}
+                        className="flex items-center gap-2 rounded-lg bg-cyan-600 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-cyan-700 hover:shadow-lg hover:shadow-cyan-500/20 active:scale-95"
+                    >
+                        <Plus className="h-4 w-4" />
+                        TAMBAH PROJECT
+                    </button>
                 </div>
             </div>
 
@@ -74,21 +123,21 @@ export default function AdminProjectsPage() {
                                 </div>
 
                                 {/* Project Image */}
-                                {project.image && (
-                                    <div className="mb-4 overflow-hidden rounded-lg border border-slate-800/60 bg-slate-800/80">
-                                        <div className="relative aspect-video">
-                                            <img
-                                                src={project.image}
-                                                alt={project.title}
-                                                className="h-full w-full object-cover"
-                                                onError={(e) => {
-                                                    e.currentTarget.src =
-                                                        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%231e293b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' fill='%2364748b'%3ENo Image%3C/text%3E%3C/svg%3E";
-                                                }}
-                                            />
-                                        </div>
-                                    </div>
-                                )}
+                                <div className="mb-4 overflow-hidden rounded-lg border border-slate-800/60 bg-slate-800/80 aspect-video flex items-center justify-center">
+                                    {project.image ? (
+                                        <img
+                                            src={project.image}
+                                            alt={project.title}
+                                            className="h-full w-full object-cover"
+                                            onError={(e) => {
+                                                e.currentTarget.src =
+                                                    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%231e293b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='16' fill='%2364748b'%3ENo Image%3C/text%3E%3C/svg%3E";
+                                            }}
+                                        />
+                                    ) : (
+                                        <div className="text-slate-600 text-xs font-medium">No Image</div>
+                                    )}
+                                </div>
 
                                 {/* Project Title */}
                                 <h3 className="text-lg font-bold text-yellow-400 line-clamp-1">
@@ -96,7 +145,7 @@ export default function AdminProjectsPage() {
                                 </h3>
 
                                 {/* Description */}
-                                <p className="mt-2 text-sm text-slate-400 line-clamp-2">
+                                <p className="mt-2 text-sm text-slate-400 line-clamp-2 min-h-[2.5rem]">
                                     {project.description}
                                 </p>
 
@@ -136,12 +185,20 @@ export default function AdminProjectsPage() {
                                 </div>
 
                                 {/* Action Buttons */}
-                                <div className="mt-4 grid grid-cols-2 gap-2">
-                                    <button className="rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-2 text-xs font-semibold text-slate-300 transition-all hover:border-slate-600 hover:bg-slate-700">
-                                        Edit
+                                <div className="mt-6 grid grid-cols-2 gap-3">
+                                    <button
+                                        onClick={() => handleEdit(project)}
+                                        className="flex items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-2 text-xs font-semibold text-slate-300 transition-all hover:border-slate-600 hover:bg-slate-700"
+                                    >
+                                        <Pencil className="h-3 w-3" />
+                                        EDIT
                                     </button>
-                                    <button className="rounded-lg border border-red-700/50 bg-red-900/20 px-3 py-2 text-xs font-semibold text-red-400 transition-all hover:bg-red-900/40">
-                                        Hapus
+                                    <button
+                                        onClick={() => handleDelete(project)}
+                                        className="flex items-center justify-center gap-2 rounded-lg border border-red-700/50 bg-red-900/20 px-3 py-2 text-xs font-semibold text-red-400 transition-all hover:bg-red-900/40"
+                                    >
+                                        <Trash2 className="h-3 w-3" />
+                                        HAPUS
                                     </button>
                                 </div>
                             </div>
@@ -149,6 +206,22 @@ export default function AdminProjectsPage() {
                     })}
                 </div>
             )}
+
+            {/* Form Modal */}
+            <ProjectFormModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onSubmit={handleSubmit}
+                initialData={editingProject}
+            />
+
+            {/* Delete Confirmation Modal */}
+            <DeleteModal
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onConfirm={handleConfirmDelete}
+                projectTitle={deletingProject?.title || ""}
+            />
         </div>
     );
 }
