@@ -2,7 +2,7 @@
 
 // components/ProjectsSection.tsx
 import { useState, useEffect } from "react";
-import Container from "@/components/container";
+import Container from "@/components/Container";
 import ProjectCard from "@/components/project-card";
 import SmallProjectCard from "@/components/small-project-card";
 import { useProjects } from "@/contexts/project-context";
