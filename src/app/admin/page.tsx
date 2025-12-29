@@ -1,10 +1,13 @@
 "use client";
 
 import { projects } from "@/lib/projects";
-import { FolderKanban, TrendingUp } from "lucide-react";
+import { useSkills } from "@/contexts/skill-context";
+import { FolderKanban, TrendingUp, Code2 } from "lucide-react";
 
 export default function AdminPage() {
+    const { skills } = useSkills();
     const totalProjects = projects.length;
+    const totalSkills = skills.length;
 
     // Calculate average progress
     const averageProgress = totalProjects > 0
@@ -23,12 +26,12 @@ export default function AdminPage() {
                     Halaman Dashboard
                 </h1>
                 <p className="mt-2 text-slate-400">
-                    Ringkasan statistik dan informasi project
+                    Ringkasan statistik dan informasi project dan skills
                 </p>
             </div>
 
             {/* Statistics Grid */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
                 {/* Total Projects */}
                 <div className="rounded-xl border border-slate-800/70 bg-slate-900/90 p-6 shadow-xl">
                     <div className="flex items-center justify-between">
@@ -89,6 +92,21 @@ export default function AdminPage() {
                             <svg className="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                             </svg>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Total Skills */}
+                <div className="rounded-xl border border-slate-800/70 bg-slate-900/90 p-6 shadow-xl">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                Total Skills
+                            </p>
+                            <p className="mt-2 text-3xl font-bold text-purple-400">{totalSkills}</p>
+                        </div>
+                        <div className="rounded-lg bg-purple-500/20 p-3">
+                            <Code2 className="h-6 w-6 text-purple-400" />
                         </div>
                     </div>
                 </div>
