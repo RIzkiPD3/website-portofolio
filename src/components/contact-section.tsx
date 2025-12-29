@@ -1,5 +1,5 @@
 ﻿// components/ContactSection.tsx
-import Container from "@/components/container";
+import Container from "@/components/Container";
 import { Mail, Instagram } from "lucide-react";
 
 export default function ContactSection() {

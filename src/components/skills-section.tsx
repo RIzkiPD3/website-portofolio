@@ -1,7 +1,7 @@
 "use client";
 
 import { Code2 } from "lucide-react";
-import Container from "@/components/container";
+import Container from "@/components/Container";
 import { useSkills } from "@/contexts/skill-context";
 
 export default function SkillsSection() {
