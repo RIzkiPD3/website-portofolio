@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import ClickBurst from "@/components/click-burst";
 import { AuthProvider } from "@/contexts/auth-context";
 import { ProjectProvider } from "@/contexts/project-context";
+import { SkillProvider } from "@/contexts/skill-context";
 import ConditionalLayout from "@/components/conditional-layout";
 import "./globals.css";
 
@@ -21,10 +22,12 @@ export default function RootLayout({
       <body className="bg-slate-950 text-slate-100 antialiased font-sans">
         <AuthProvider>
           <ProjectProvider>
-            <ClickBurst />
-            <ConditionalLayout>
-              {children}
-            </ConditionalLayout>
+            <SkillProvider>
+              <ClickBurst />
+              <ConditionalLayout>
+                {children}
+              </ConditionalLayout>
+            </SkillProvider>
           </ProjectProvider>
         </AuthProvider>
       </body>
