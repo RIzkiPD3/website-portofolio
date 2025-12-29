@@ -1,5 +1,5 @@
 // components/Hero.tsx
-import Container from "@/components/container";
+import Container from "@/components/Container";
 
 export default function Hero() {
   return (
@@ -11,7 +11,7 @@ export default function Hero() {
 
       <Container className="flex min-h-[calc(100vh-4rem)] flex-col justify-center">
         <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-tight sm:text-6xl">
-          Hi, I’m Rizki  
+          Hi, I’m Rizki
           <span className="block bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
             Software Engineer
           </span>

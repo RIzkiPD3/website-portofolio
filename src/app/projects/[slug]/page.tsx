@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import Container from "@/components/container";
+import Container from "@/components/Container";
 import { projects } from "@/lib/projects";
 
 export default function ProjectDetailPage({
