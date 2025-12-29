@@ -30,7 +30,7 @@ export default function AboutSection() {
           </p>
 
           <p className="mt-4 text-slate-400">
-            Currently, I work mainly with Next.js, TypeScript, and modern
+            Currently, I work mainly with Next.js, React.js, TypeScript, and modern
             frontend tools. I'm also exploring backend systems, databases,
             and software architecture to grow as a full-stack developer.
           </p>
