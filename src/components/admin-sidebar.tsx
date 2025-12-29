@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/contexts/auth-context";
-import { LayoutDashboard, FolderKanban, LogOut } from "lucide-react";
+import { LayoutDashboard, FolderKanban, LogOut, Code2 } from "lucide-react";
 
 export default function AdminSidebar() {
     const pathname = usePathname();
@@ -19,6 +19,11 @@ export default function AdminSidebar() {
             name: "Project",
             href: "/admin/projects",
             icon: FolderKanban,
+        },
+        {
+            name: "Skills",
+            href: "/admin/skills",
+            icon: Code2,
         },
     ];
 
@@ -53,8 +58,8 @@ export default function AdminSidebar() {
                                 key={item.href}
                                 href={item.href}
                                 className={`flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all ${active
-                                        ? "bg-cyan-500/20 text-cyan-400 shadow-lg shadow-cyan-500/20"
-                                        : "text-slate-400 hover:bg-slate-800/80 hover:text-slate-300"
+                                    ? "bg-cyan-500/20 text-cyan-400 shadow-lg shadow-cyan-500/20"
+                                    : "text-slate-400 hover:bg-slate-800/80 hover:text-slate-300"
                                     }`}
                             >
                                 <Icon className="h-5 w-5" />
